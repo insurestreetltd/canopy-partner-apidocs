@@ -157,7 +157,7 @@ echo $response->getBody(), "\n";
 Before you can start working with protected API functions, you need to get the API Token. 
 
   - API Token – it can be treated as user session ID
-  
+
 This API Token must be used as authorization header in all API calls to protected functions. 
 Example API Token usage in the header
 
@@ -300,6 +300,7 @@ echo $response->getBody(), "\n";
 ```
 
 This endpoint used to check current state of the user share permission to your company.
+
 If user granted `share permission` to your company you will receive `renterId`, in other case 
 will be `404 error`.
 
