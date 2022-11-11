@@ -32,7 +32,7 @@ To work with Partners API you need to get authentication credentials. These cred
 provided by the Canopy side by manual request. Please speak to your account manager 
 here to obtain the details for the environments.
 
-Credentials include 2 values:
+Credentials include 3 values:
 
   * Partner ID – ID of your account
   * API Key – client specific Key for accessing to Canopy API functions
