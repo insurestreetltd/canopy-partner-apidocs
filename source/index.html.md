@@ -231,8 +231,9 @@ echo $response->getBody(), "\n";
   }
 }
 ```
-
 This endpoint may be called to change current `secretKey` (which is required for `jwtKey` generation) and get back freshly generated one. Accepts currently active `secretKey` in request body. After receiving successful response with new `secretKey`, previous `secretKey` becomes stale and should not be used for `jwtKey` generation.
+
+P.S. We change passwords sometimes, do we?
 
 ### HTTP Request
 
