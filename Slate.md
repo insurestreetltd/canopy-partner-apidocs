@@ -1,6 +1,6 @@
 This doc is powered by [Slate](https://github.com/slatedocs/slate)
 
-Link to docs: https://insurestreetltd.github.io/canopy-apidocs/
+Link to docs: https://insurestreetltd.github.io/canopy-partner-apidocs/
 
 ## Dependencies
 

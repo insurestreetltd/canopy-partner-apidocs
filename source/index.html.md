@@ -21,15 +21,25 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Canopy API for Partners! We follow standard behaviour in terms of URL's, JSON request/response bodies where applicable and standard HTTP error codes.
+Welcome to the Canopy API for Partners!
+We follow standard behavior in terms of URL's, JSON request/response bodies where 
+applicable and standard HTTP error codes. 
 
 # Requesting Your Credentials
 
-Credentials are provided on request by Canopy to yourselves. Please speak to your account manager here to obtain the details for the environments.
+To work with Partners API you need to get authentication credentials. These credentials 
+provided by the Canopy side by manual request. Please speak to your account manager 
+here to obtain the details for the environments.
+
+Credentials include 2 values:
+  - Partner ID – ID of your account
+  - API Key – client specific Key for accessing to Canopy API functions
+  - Secret Key – will be used for authentication
 
 # Using API key
 
-In the credentials you were sent you should have API key. Canopy expects for the API key to be included in all requests to the API in a header that looks like the following:
+Canopy expects the `API Key` will be included in the header for all API requests. 
+See example below:
 
 `x-api-key: ePYgsiGbWF5aAHBj0xT9Pa1k5li0NPMD25PQXbAC`
 
@@ -140,6 +150,11 @@ echo $response->getBody(), "\n";
   "expires": 1594907203
 }
 ```
+
+Before you can start working with protected API functions, you need to get the API Token. 
+  - API Token – it can be treated as user session ID
+This API Token must be used as authorization header in all API calls to protected functions. 
+Example API Token usage in the header
 
 ### HTTP Request
 
@@ -279,7 +294,9 @@ echo $response->getBody(), "\n";
 }
 ```
 
-This endpoint may be called to check permission by email
+This endpoint used to check current state of the user share permission to your company.
+If user granted `share permission` to your company you will receive `renterId`, in other case 
+will be `404 error`.
 
 ### HTTP Request
 
@@ -360,7 +377,7 @@ echo $response->getBody(), "\n";
 }
 ```
 
-This endpoint creates new permission request.
+With using this request your company can request share permission for specific user.
 
 
 ### HTTP Request
@@ -373,6 +390,11 @@ This endpoint creates new permission request.
 | ---------- | ---------------------- |
 | partnerId  | Your partner reference |
 
+### Body Parameters
+
+| Parameter  | Required | Description                                                             |
+| ---------- | -------- | ----------------------------------------------------------------------- |
+| email      | true     | renter email to which we will send “share permission” request           |
 
 # Create connection
 
@@ -393,7 +415,7 @@ axios({
   }
   data: {
     branchId: "UUID",
-    renterId: "UUID",
+    email: "string",
     listingName: "String",
     listingUrl: "URL String",
     propertyAddress: "String",
@@ -422,7 +444,7 @@ $response = $client->request(
     ],
     "json" => [
       "branchId" => "UUID",
-      "renterId" => "UUID",
+      "email" => "String",
       "listingName" => "String",
       "listingUrl" => "String",
       "propertyAddress" => "String",
@@ -444,7 +466,7 @@ echo $response->getBody(), "\n";
   "success": true,
   "requestId": "request_id",
   "data": {
-    "HQlint": "URL",
+    "HQlink": "URL",
   }
 }
 ```
@@ -467,7 +489,7 @@ This endpoint creates new connection between renter and agent by branchId.
 | Parameter          | Type     | Required | Description                                                                    |
 | ------------------ | -------- | -------- | ------------------------------------------------------------------------------ |
 | branchId           | string   | true     |  |                                                                                      
-| renterId           | string   | true     | canopy renter id  |                                                                     
+| email              | string   | true     | renter email to which we will send “share permission” request |                                                                    
 | listingName        | string   | false    |  |                                                                    
 | listingUrl         | string   | false    |  |                                                                    
 | propertyAddress    | string   | false    |  |                                                                    
@@ -553,24 +575,24 @@ This endpoint registers the webhook with the appropriate type in Canopy system. 
 
 | Parameter          | Type     | Required | Description                                                                    |
 | ------------------ | -------- | -------- | ------------------------------------------------------------------------------ |
-| type               | string   | true     | Specifies which type of updates will be sent from Canopy. Could be one of ["OVERALL_STATUS_UPDATES", "REQUEST_STATUS_UPDATES"]                                                                                      
+| type               | string   | true     | Specifies which type of updates will be sent from Canopy. Could be one of ["OVERALL_STATUS_UPDATES", "PERMISSION_REQUEST_UPDATES"]                                                                                      
 | callbackUrl        | string   | true     | The URL of the webhook endpoint  |
 
 
 ### Event types
 
-If you subscribed to the `REQUEST_STATUS_UPDATES` type, the updates will be sent to the `callbackUrl` each time one of the following events trigger:
+If you subscribed to the `PERMISSION_REQUEST_UPDATES` type, the updates will be sent to the `callbackUrl` each time one of the following events trigger:
 
-| Event                                      | Description                                         |
-| ------------------------------------------ | --------------------------------------------------- |
-| `INVITED`                                  | The user was invited to permission                     |
-| `INVITE_RESENT`                            | Resent invitation email for the user                |
-| `PERMISSIONED`                             | User accepts the permission                         |
-| `PERMISSION_REJECTED`                      | User rejects the permission                         |
-| `PERMISSION_STOPPED`                       | User stops the permission                           |
+| Event                         | Description                                         |
+| ----------------------------- | --------------------------------------------------- |
+| `PERMISSION_USER_INVITED`     | The user was invited to join Canopy                 |
+| `PERMISSION_INVITE_RESENT`    | Invitation email was resent to the user             |
+| `PERMISSION_APPROVED`         | User accepts the permission request                 |
+| `PERMISSION_DENIED`           | User denied the permission request                  |
+| `PERMISSION_STOPPED`          | User stopped share permission with your company     |
 
 
-Once `REQUEST_STATUS_UPDATES` event trigger, the Canopy should sent the notification to `callbackUrl` in the following format:
+Once `PERMISSION_REQUEST_UPDATES` event trigger, the Canopy should sent the notification to `callbackUrl` in the following format:
 
 | Parameter           | Type   |
 | ------------------- | ------ |
@@ -588,7 +610,7 @@ Once `OVERALL_STATUS_UPDATES` event trigger, the Canopy should sent the notifica
 | Parameter          | Type   | Description                                                                              |
 | ------------------ | ------ | ---------------------------------------------------------------------------------------- |
 | canopyRenterId     | string |                                                                                          |
-| partnerReferenceId | string |                                                                                          |
+| partnerId          | string |                                                                                          |
 | overallStatus      | string | One of ["NOT_STARTED", "IN_PROGRESS", "ACCEPT", "CONSIDER", "HIGH_RISK"]                 |
 
 ## Unregister Webhook
