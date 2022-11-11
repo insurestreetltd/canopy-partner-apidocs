@@ -496,7 +496,7 @@ This endpoint creates new connection between renter and agent by branchId.
 
 | Parameter          | Type     | Required | Description                                   |
 | ------------------ | -------- | -------- | --------------------------------------------- |                                                
-| branchId           | string   | false    | branchId witch renter should connect          |
+| branchId           | string   | false    | branchId which renter should connect          |
 | email              | string   | true     | renter email                                  |                                                                    
 | listingName        | string   | false    |                                               |                                                                    
 | listingUrl         | string   | false    |                                               |                                                                    
