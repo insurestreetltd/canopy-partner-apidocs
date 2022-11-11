@@ -419,7 +419,7 @@ axios({
   headers: {
     "Authorization": authorizationToken,
     "x-api-key": apiKey,
-  }
+  },
   data: {
     branchId: "UUID",
     email: "string",
@@ -473,6 +473,7 @@ echo $response->getBody(), "\n";
   "success": true,
   "requestId": "request_id",
   "data": {
+    "renterId": "UUID",
     "rentPassportLink": "URL",
   }
 }
