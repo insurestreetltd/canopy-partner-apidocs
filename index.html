@@ -607,6 +607,8 @@ Example API Token usage in the header</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint may be called to change current <code>secretKey</code> (which is required for <code>jwtKey</code> generation) and get back freshly generated one. Accepts currently active <code>secretKey</code> in request body. After receiving successful response with new <code>secretKey</code>, previous <code>secretKey</code> becomes stale and should not be used for <code>jwtKey</code> generation.</p>
+
+<p>P.S. We change passwords sometimes, do we?</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /referencing-requests/partner/refresh</code></p>
 <h3 id='body-parameters-2'>Body Parameters</h3>
