@@ -338,7 +338,7 @@ axios({
   headers: {
     "Authorization": authorizationToken,
     "x-api-key": apiKey,
-  }
+  },
   data: {
     email: "example@gmail.com"
   }
