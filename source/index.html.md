@@ -473,7 +473,7 @@ echo $response->getBody(), "\n";
   "success": true,
   "requestId": "request_id",
   "data": {
-    "HQlink": "URL",
+    "rentPassportLink": "URL",
   }
 }
 ```
