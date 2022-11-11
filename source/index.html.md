@@ -494,16 +494,16 @@ This endpoint creates new connection between renter and agent by branchId.
 
 ### Body Parameters
 
-| Parameter          | Type     | Required | Description                                                                    |
-| ------------------ | -------- | -------- | ------------------------------------------------------------------------------ |
-| branchId           | string   | true     |  |                                                                                      
-| email              | string   | true     | renter email to which we will send “share permission” request |                                                                    
-| listingName        | string   | false    |  |                                                                    
-| listingUrl         | string   | false    |  |                                                                    
-| propertyAddress    | string   | false    |  |                                                                    
-| inquiryType        | string   | false    |  |                                                                  
-| inquiryTimestamp   | string   | false    |  |                                                                  
-| renterMessage      | string   | false    |  |
+| Parameter          | Type     | Required | Description                                   |
+| ------------------ | -------- | -------- | --------------------------------------------- |                                                
+| branchId           | string   | false    | branchId witch renter should connect          |
+| email              | string   | true     | renter email                                  |                                                                    
+| listingName        | string   | false    |                                               |                                                                    
+| listingUrl         | string   | false    |                                               |                                                                    
+| propertyAddress    | string   | false    |                                               |                                                                    
+| inquiryType        | string   | false    |                                               |                                                                  
+| inquiryTimestamp   | string   | false    |                                               |                                                                  
+| renterMessage      | string   | false    |                                               |
 
 
 # Webhooks Endpoints
