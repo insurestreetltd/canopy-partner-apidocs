@@ -22,6 +22,7 @@ code_clipboard: true
 # Introduction
 
 Welcome to the Canopy API for Partners!
+
 We follow standard behavior in terms of URL's, JSON request/response bodies where 
 applicable and standard HTTP error codes. 
 
@@ -32,13 +33,15 @@ provided by the Canopy side by manual request. Please speak to your account mana
 here to obtain the details for the environments.
 
 Credentials include 2 values:
-  - Partner ID – ID of your account
-  - API Key – client specific Key for accessing to Canopy API functions
-  - Secret Key – will be used for authentication
+
+  * Partner ID – ID of your account
+  * API Key – client specific Key for accessing to Canopy API functions
+  * Secret Key – will be used for authentication
 
 # Using API key
 
 Canopy expects the `API Key` will be included in the header for all API requests. 
+
 See example below:
 
 `x-api-key: ePYgsiGbWF5aAHBj0xT9Pa1k5li0NPMD25PQXbAC`
@@ -152,7 +155,9 @@ echo $response->getBody(), "\n";
 ```
 
 Before you can start working with protected API functions, you need to get the API Token. 
+
   - API Token – it can be treated as user session ID
+  
 This API Token must be used as authorization header in all API calls to protected functions. 
 Example API Token usage in the header
 
