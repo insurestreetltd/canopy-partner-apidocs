@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: API Reference for Partners
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
