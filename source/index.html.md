@@ -378,7 +378,6 @@ echo $response->getBody(), "\n";
   "success": true,
   "requestId": "request_id",
   "data": {
-    "renterId": "UUID",
     "permissionRequestId": "UUID",
   }
 }
