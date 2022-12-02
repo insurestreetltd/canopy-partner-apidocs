@@ -592,7 +592,6 @@ If you subscribed to the `PERMISSION_REQUEST_UPDATES` type, the updates will be 
 
 | Event                         | Description                                         |
 | ----------------------------- | --------------------------------------------------- |
-| `PERMISSION_USER_INVITED`     | The user was invited to join Canopy                 |
 | `PERMISSION_INVITE_RESENT`    | Invitation email was resent to the user             |
 | `PERMISSION_APPROVED`         | User accepts the permission request                 |
 | `PERMISSION_DENIED`           | User denied the permission request                  |
@@ -603,7 +602,7 @@ Once `PERMISSION_REQUEST_UPDATES` event trigger, the Canopy should sent the noti
 
 | Parameter           | Type   |
 | ------------------- | ------ |
-| canopyRenterId      | UUID   |
+| renterId      | UUID   |
 | permissionRequestId | UUID   |
 | partnerId           | UUID   |
 | notes               | string |
@@ -615,10 +614,10 @@ If you are subscribed to the `OVERALL_STATUS_UPDATES` type, the updates will be 
 Once `OVERALL_STATUS_UPDATES` event trigger, the Canopy should sent the notification to `callbackUrl` in the following format:
 
 | Parameter          | Type   | Description                                                                              |
-| ------------------ | ------ | ---------------------------------------------------------------------------------------- |
-| canopyRenterId     | string |                                                                                          |
-| partnerId          | string |                                                                                          |
-| overallStatus      | string | One of ["NOT_STARTED", "IN_PROGRESS", "ACCEPT", "CONSIDER", "HIGH_RISK"]                 |
+| ------------------ | ------ | -------------------------------------------------------------------------------------|
+| renterId           | string |                                                                                      |
+| partnerId          | string |                                                                                      |
+| overallStatus      | string | One of ["NOT_STARTED", "IN_PROGRESS", "ACCEPT", "CONSIDER", "HIGH_RISK"]             |
 
 ## Unregister Webhook
 
