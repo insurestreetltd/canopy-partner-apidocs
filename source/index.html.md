@@ -376,9 +376,9 @@ echo $response->getBody(), "\n";
 ```json
 {
   "success": true,
-  "requestId": "request_id",
+  "requestId": "request_id", // that is session id, it could help in issue reporting
   "data": {
-    "permissionRequestId": "UUID",
+    "permissionRequestId": "UUID", // payload
   }
 }
 ```
@@ -426,7 +426,7 @@ axios({
     listingUrl: "URL String",
     propertyAddress: "String",
     inquiryType: "String",
-    inquiryTimestamp: "timestamp",
+    inquiryTimestamp: "ISODateTime",
     renterMessage: "String",
   }
 });
@@ -456,7 +456,7 @@ $response = $client->request(
       "propertyAddress" => "String",
       "renterMessage" => "String",
       "inquiryType" => "String",
-      "inquiryTimestamp" => "timestamp",
+      "inquiryTimestamp" => "ISODateTime",
     ]
   ]
 );
@@ -478,7 +478,8 @@ echo $response->getBody(), "\n";
 }
 ```
 
-This endpoint creates new connection between renter and agent by branchId.
+This endpoint creates new connection between renter and agent by branchId. 
+if the connection already exists we will return the link to that connection.
 
 
 ### HTTP Request
@@ -493,16 +494,16 @@ This endpoint creates new connection between renter and agent by branchId.
 
 ### Body Parameters
 
-| Parameter        | Type   | Required | Description                          |
-| ---------------- | ------ | -------- | ------------------------------------ |                                                
-| branchId         | string | false    | branchId which renter should connect |
-| email            | string | true     | renter email                         |
-| listingName      | string | false    |                                      |
-| listingUrl       | string | false    |                                      |                             
-| propertyAddress  | string | false    |                                      |         
-| inquiryType      | string | false    |                                      |                    
-| inquiryTimestamp | string | false    |                                      |
-| renterMessage    | string | false    |                                      |
+| Parameter        | Type   | Required | Description                               |
+| ---------------- | ------ | -------- | ----------------------------------------- |                                                
+| branchId         | string      | false    | branchId which renter should connect |
+| email            | string      | true     | renter email                         |
+| listingName      | string      | false    |                                      |
+| listingUrl       | string      | false    |                                      |                             
+| propertyAddress  | string      | false    |                                      |         
+| inquiryType      | string      | false    |                                      |                    
+| inquiryTimestamp | ISODateTime | false    |                                      |
+| renterMessage    | string      | false    |                                      |
 
 
 # Webhooks Endpoints
@@ -602,7 +603,7 @@ Once `PERMISSION_REQUEST_UPDATES` event trigger, the Canopy should sent the noti
 
 | Parameter           | Type   |
 | ------------------- | ------ |
-| renterId      | UUID   |
+| renterId            | UUID   |
 | permissionRequestId | UUID   |
 | partnerId           | UUID   |
 | notes               | string |
